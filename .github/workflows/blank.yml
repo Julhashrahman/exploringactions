@@ -21,6 +21,9 @@ jobs:
     steps: 
       #Display the event that triggered the workflow.
       - run: echo "The job is triggered by a ${{github.event_name}} event."
+      
+      # Information about the repository and branch
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
     
   # This workflow contains a single job called "build"
   build:
