@@ -18,12 +18,24 @@ jobs:
   Example-actions-jobs:
     name: exploring github actions
     runs-on: ubuntu-latest
-    steps: 
-      #Display the event that triggered the workflow.
-      - run: echo "The job is triggered by a ${{github.event_name}} event."
-      
+    steps:            
       # Information about the repository and branch
       - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      
+      # Use Action located in https://github.com/actions
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      
+      - run: echo "Your repository has been copied to the path ${{ github.workspace }} on the runner."
+      
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+        
+        
+       
     
   # This workflow contains a single job called "build"
   build:
